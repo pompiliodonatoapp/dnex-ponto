@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { SidebarNavItem } from "../types";
-import { Clock, CalendarCheck, FileText, Settings2, BarChart3, CalendarDays } from "lucide-react";
+import { Clock, CalendarCheck, FileText, Settings2, BarChart3, CalendarDays, Lock } from "lucide-react";
 import { PaginaRegistro } from "./pages/PaginaRegistro";
 import { PaginaEspelho } from "./pages/PaginaEspelho";
 import { PaginaAjustes } from "./pages/PaginaAjustes";
 import { PaginaEscalas } from "./pages/PaginaEscalas";
 import { PaginaRelatorios } from "./pages/PaginaRelatorios";
+import { PaginaFechamento } from "./pages/PaginaFechamento";
 import { PaginaConfiguracoes } from "./pages/PaginaConfiguracoes";
 import type { PontoPage } from "./pages/PontoFoundation";
 
@@ -47,6 +48,7 @@ function ConteudoPonto(props: PontoModuleProps) {
       { id: "escalas", label: "Escalas e Turnos", icon: <CalendarDays size={18} /> },
       { id: "ajustes", label: "Ajustes e Abonos", icon: <FileText size={18} /> },
       { id: "relatorios", label: "Relatórios", icon: <BarChart3 size={18} /> },
+      { id: "fechamento", label: "Fechamento", icon: <Lock size={18} /> },
       { id: "configuracoes", label: "Configurações", icon: <Settings2 size={18} /> },
     ],
     [],
@@ -54,9 +56,7 @@ function ConteudoPonto(props: PontoModuleProps) {
 
   const onNavSelect = useCallback(
     (id: string) => {
-      if (id === "registro" || id === "espelho" || id === "ajustes" || id === "relatorios" || id === "configuracoes") {
-        setPagina(id as PontoPage);
-      }
+      setPagina(id as PontoPage);
     },
     [],
   );
@@ -116,6 +116,7 @@ function ConteudoPonto(props: PontoModuleProps) {
         {pagina === "escalas" && <PaginaEscalas accountId={props.accountId} userId={props.userId} />}
         {pagina === "ajustes" && <PaginaAjustes accountId={props.accountId} userId={props.userId} />}
         {pagina === "relatorios" && <PaginaRelatorios accountId={props.accountId} />}
+        {pagina === "fechamento" && <PaginaFechamento accountId={props.accountId} userId={props.userId} />}
         {pagina === "configuracoes" && <PaginaConfiguracoes accountId={props.accountId} />}
       </main>
     </div>

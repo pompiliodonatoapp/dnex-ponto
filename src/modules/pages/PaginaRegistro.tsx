@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Card, CardBody, PageHeader, Button, Alert, Badge, StatsGrid, StatCard } from "../../components/ui";
-import { Clock, MapPin, Wifi, WifiOff, Camera, Fingerprint, QrCode, CheckCircle2, AlertTriangle } from "lucide-react";
+import { Clock, MapPin, Wifi, WifiOff, Camera, Fingerprint, QrCode, CheckCircle2, AlertTriangle, RefreshCw, CloudUpload } from "lucide-react";
 import { supabase } from "../../lib/supabase";
+import { saveOfflineEvent, getPendingCount, getPendingEvents, removeEvent } from "../../lib/offline-storage";
+import type { OfflineClockEvent } from "../../lib/offline-storage";
 
 interface Props {
   accountId: string;
@@ -15,13 +17,86 @@ export function PaginaRegistro({ accountId, userId }: Props) {
   const [isOffline, setIsOffline] = useState(!navigator.onLine);
   const [clocking, setClocking] = useState(false);
   const [message, setMessage] = useState<{ type: "success" | "error" | "info"; text: string } | null>(null);
+  const [pendingCount, setPendingCount] = useState(0);
+  const [syncing, setSyncing] = useState(false);
+
+  // Load pending count on mount and after each clock event
+  const refreshPendingCount = useCallback(async () => {
+    try {
+      const count = await getPendingCount();
+      setPendingCount(count);
+    } catch (e) {
+      console.error("Erro ao contar eventos pendentes:", e);
+    }
+  }, []);
+
+  // Sync pending offline events to Supabase
+  const syncOfflineEvents = useCallback(async () => {
+    if (!navigator.onLine || syncing) return;
+    setSyncing(true);
+    try {
+      const events = await getPendingEvents();
+      if (events.length === 0) {
+        setSyncing(false);
+        return;
+      }
+      let synced = 0;
+      for (const event of events) {
+        try {
+          const { error } = await supabase.from("time_clock").insert({
+            account_id: event.account_id,
+            employee_id: event.employee_id,
+            timestamp_utc: event.timestamp_utc,
+            type: event.type,
+            source: event.source,
+            latitude: event.latitude,
+            longitude: event.longitude,
+            is_offline_sync: true,
+            original_timestamp_utc: event.original_timestamp_utc,
+            device_info: event.device_info,
+          });
+          if (!error) {
+            await removeEvent(event.id);
+            synced++;
+          } else {
+            console.warn(`Falha ao sincronizar evento ${event.id}:`, error.message);
+          }
+        } catch (err) {
+          console.error(`Erro de rede ao sincronizar evento ${event.id}:`, err);
+          break; // Stop on network error
+        }
+      }
+      if (synced > 0) {
+        setMessage({ type: "success", text: `${synced} registro(s) offline sincronizado(s) com sucesso.` });
+        await refreshPendingCount();
+      }
+    } catch (e) {
+      console.error("Erro na sincronização:", e);
+    } finally {
+      setSyncing(false);
+    }
+  }, [syncing, refreshPendingCount]);
 
   useEffect(() => {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
-    const handleOnline = () => setIsOffline(false);
+    const handleOnline = () => {
+      setIsOffline(false);
+      // Auto-sync when coming back online
+      setTimeout(() => syncOfflineEvents(), 1000);
+    };
     const handleOffline = () => setIsOffline(true);
     window.addEventListener("online", handleOnline);
     window.addEventListener("offline", handleOffline);
+
+    // Listen for SW sync completion messages
+    const handleSWMessage = (event: MessageEvent) => {
+      if (event.data?.type === "sync-complete") {
+        refreshPendingCount();
+      }
+    };
+    navigator.serviceWorker?.ready.then((reg) => {
+      reg.active?.addEventListener("message", handleSWMessage as any);
+    });
 
     async function loadData() {
       try {
@@ -56,12 +131,29 @@ export function PaginaRegistro({ accountId, userId }: Props) {
     }
 
     loadData();
+    refreshPendingCount();
+
+    // Store anon key in SW IndexedDB for background sync
+    const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+    if (anonKey && navigator.serviceWorker) {
+      navigator.serviceWorker.ready.then((reg) => {
+        reg.active?.postMessage({ type: "store-anon-key", key: anonKey });
+      });
+    }
+
     return () => {
       clearInterval(timer);
       window.removeEventListener("online", handleOnline);
       window.removeEventListener("offline", handleOffline);
     };
-  }, [accountId, userId]);
+  }, [accountId, userId, refreshPendingCount, syncOfflineEvents]);
+
+  // Trigger sync when online and there are pending events
+  useEffect(() => {
+    if (!isOffline && pendingCount > 0 && !syncing) {
+      syncOfflineEvents();
+    }
+  }, [isOffline, pendingCount, syncing, syncOfflineEvents]);
 
   const formatTime = (date: Date) => date.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
   const formatDate = (date: Date) => date.toLocaleDateString("pt-BR", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
@@ -103,60 +195,129 @@ export function PaginaRegistro({ accountId, userId }: Props) {
         console.warn("Geolocalização não disponível:", geoError);
       }
 
-      const { error } = await supabase.from("time_clock").insert({
+      const eventData = {
         account_id: accountId,
         employee_id: userId,
         timestamp_utc: now.toISOString(),
-        type: clockType,
+        type: clockType as "clock_in" | "break_start" | "break_end" | "clock_out",
         source: isOffline ? "mobile_app_offline" : "web_browser",
         latitude,
         longitude,
         is_offline_sync: isOffline,
         original_timestamp_utc: now.toISOString(),
         device_info: { userAgent: navigator.userAgent, platform: navigator.platform, online: !isOffline },
-      });
+      };
 
-      if (error) throw error;
+      if (isOffline || !navigator.onLine) {
+        // Save to IndexedDB for later sync
+        const offlineEvent: OfflineClockEvent = {
+          id: crypto.randomUUID(),
+          ...eventData,
+          created_at_local: new Date().toISOString(),
+        };
+        await saveOfflineEvent(offlineEvent);
+        await refreshPendingCount();
+        setMessage({ type: "info", text: `Ponto registrado offline (${formatTime(now)}). Será sincronizado automaticamente.` });
+      } else {
+        // Direct Supabase insert
+        const { error } = await supabase.from("time_clock").insert(eventData);
+        if (error) throw error;
+        setMessage({ type: "success", text: `${getClockLabel(clockType)} registrado com sucesso! ${formatTime(now)}` });
+      }
 
-      setMessage({ type: "success", text: `${getClockLabel(clockType)} registrado com sucesso! ${formatTime(now)}` });
       setLastClock({ timestamp: now.toISOString(), type: clockType });
       setCurrentTime(new Date());
     } catch (e: any) {
-      setMessage({ type: "error", text: `Erro ao registrar ponto: ${e.message ?? "Tente novamente."}` });
+      // If direct insert failed, try saving offline as fallback
+      try {
+        const clockType = getNextClockType();
+        const now = new Date();
+        const offlineEvent: OfflineClockEvent = {
+          id: crypto.randomUUID(),
+          account_id: accountId,
+          employee_id: userId,
+          timestamp_utc: now.toISOString(),
+          type: clockType as "clock_in" | "break_start" | "break_end" | "clock_out",
+          source: "web_browser_fallback",
+          latitude: null,
+          longitude: null,
+          is_offline_sync: false,
+          original_timestamp_utc: now.toISOString(),
+          device_info: { userAgent: navigator.userAgent, platform: navigator.platform, online: true, error: e.message },
+          created_at_local: new Date().toISOString(),
+        };
+        await saveOfflineEvent(offlineEvent);
+        await refreshPendingCount();
+        setMessage({ type: "info", text: `Erro na conexão. Ponto salvo offline para sincronização posterior.` });
+        setLastClock({ timestamp: now.toISOString(), type: clockType });
+      } catch (saveErr) {
+        setMessage({ type: "error", text: `Erro ao registrar ponto: ${e.message ?? "desconhecido"}` });
+      }
     } finally {
       setClocking(false);
     }
   };
 
-  const formatMinutes = (minutes: number) => {
-    const hours = Math.floor(Math.abs(minutes) / 60);
-    const mins = Math.abs(minutes) % 60;
-    const sign = minutes >= 0 ? "+" : "-";
-    return `${sign}${hours.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}`;
+  const formatMinutes = (m: number) => {
+    const h = Math.floor(Math.abs(m) / 60);
+    const min = Math.abs(m) % 60;
+    return `${h.toString().padStart(2, "0")}:${min.toString().padStart(2, "0")}`;
   };
+
+  const clockType = getNextClockType();
 
   return (
     <div className="space-y-6 p-6">
-      <PageHeader title="Registrar Ponto" description={formatDate(currentTime)} />
+      <PageHeader title="Registro de Ponto" description={formatDate(currentTime)} />
 
-      {isOffline && (
+      {/* Sync Status Indicator */}
+      {(pendingCount > 0 || syncing) && (
+        <Alert tone={syncing ? "info" : "warning"} title={syncing ? "Sincronizando..." : `${pendingCount} registro(s) pendente(s)`}>
+          {syncing ? (
+            <span className="flex items-center gap-2"><RefreshCw size={14} className="animate-spin" /> Sincronizando registros offline...</span>
+          ) : (
+            <span className="flex items-center gap-2">
+              <CloudUpload size={14} /> Registros aguardando conexão. Clique para sincronizar agora.
+              <button onClick={syncOfflineEvents} className="ml-2 underline font-semibold hover:text-blue-700">Sincronizar</button>
+            </span>
+          )}
+        </Alert>
+      )}
+
+      {isOffline && pendingCount === 0 && (
         <Alert tone="warning" title="Modo Offline">
-          Você está sem conexão. O ponto será salvo localmente e sincronizado automaticamente.
+          Você está sem conexão. Os pontos registrados serão salvos localmente e sincronizados automaticamente quando a conexão retornar.
         </Alert>
       )}
 
       <Card>
-        <CardBody className="flex flex-col items-center justify-center py-12">
-          <div className="mb-4 text-6xl font-bold font-mono" style={{ color: "var(--fg)" }}>
-            {formatTime(currentTime)}
+        <CardBody className="flex flex-col items-center gap-6 py-8">
+          <div className="text-center">
+            <div className="text-5xl font-bold tabular-nums tracking-tight" style={{ color: "var(--fg)" }}>
+              {formatTime(currentTime)}
+            </div>
+            <div className="mt-2 text-sm text-[var(--fg-muted)]">{formatDate(currentTime)}</div>
           </div>
-          <div className="mb-8 text-lg text-[var(--fg-muted)]">{formatDate(currentTime)}</div>
-          <Button size="lg" onClick={handleClock} disabled={clocking} className="w-full max-w-md py-8 text-2xl">
-            {clocking ? "Registrando..." : getClockLabel(getNextClockType())}
+
+          <Button
+            size="lg"
+            onClick={handleClock}
+            disabled={clocking}
+            className="min-w-[240px]"
+          >
+            {clocking ? "Registrando..." : getClockLabel(clockType)}
           </Button>
+
+          {lastClock && (
+            <div className="text-center text-sm text-[var(--fg-muted)]">
+              Último registro: <span className="font-semibold text-[var(--fg)]">{getClockLabel(lastClock.type)}</span> às{" "}
+              <span className="font-mono text-[var(--fg)]">{formatTime(new Date(lastClock.timestamp))}</span>
+            </div>
+          )}
+
           {message && (
-            <div className="mt-6 w-full max-w-md">
-              <Alert tone={message.type} title={message.type === "success" ? "Sucesso" : "Erro"}>
+            <div className="w-full max-w-md">
+              <Alert tone={message.type} title={message.type === "success" ? "Sucesso" : message.type === "error" ? "Erro" : "Info"}>
                 {message.text}
               </Alert>
             </div>
@@ -181,7 +342,7 @@ export function PaginaRegistro({ accountId, userId }: Props) {
               { icon: Camera, title: "Foto", desc: "Captura foto no momento da batida" },
               { icon: Fingerprint, title: "Biometria", desc: "Face ID / Touch ID para autenticação" },
               { icon: QrCode, title: "QR Code", desc: "Escaneie QR code fixo na recepção" },
-              { icon: WifiOff, title: "Offline", desc: "Funciona sem internet, sincroniza depois" },
+              { icon: WifiOff, title: "Offline", desc: `Funciona sem internet${pendingCount > 0 ? ` (${pendingCount} pendente)` : ""}` },
             ].map((method) => (
               <div key={method.title} className="flex items-start gap-3 rounded-lg p-4" style={{ background: "var(--bg-subtle)" }}>
                 <method.icon size={20} className="mt-0.5 shrink-0 text-[var(--tone-action-fg)]" />
