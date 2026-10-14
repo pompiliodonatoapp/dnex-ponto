@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { SidebarNavItem } from "../types";
-import { Clock, CalendarCheck, FileText, Settings2, BarChart3 } from "lucide-react";
+import { Clock, CalendarCheck, FileText, Settings2, BarChart3, CalendarDays } from "lucide-react";
 import { PaginaRegistro } from "./pages/PaginaRegistro";
 import { PaginaEspelho } from "./pages/PaginaEspelho";
 import { PaginaAjustes } from "./pages/PaginaAjustes";
+import { PaginaEscalas } from "./pages/PaginaEscalas";
 import { PaginaRelatorios } from "./pages/PaginaRelatorios";
 import { PaginaConfiguracoes } from "./pages/PaginaConfiguracoes";
 import type { PontoPage } from "./pages/PontoFoundation";
@@ -43,6 +44,7 @@ function ConteudoPonto(props: PontoModuleProps) {
     () => [
       { id: "registro", label: "Registrar Ponto", icon: <Clock size={18} /> },
       { id: "espelho", label: "Espelho de Ponto", icon: <CalendarCheck size={18} /> },
+      { id: "escalas", label: "Escalas e Turnos", icon: <CalendarDays size={18} /> },
       { id: "ajustes", label: "Ajustes e Abonos", icon: <FileText size={18} /> },
       { id: "relatorios", label: "Relatórios", icon: <BarChart3 size={18} /> },
       { id: "configuracoes", label: "Configurações", icon: <Settings2 size={18} /> },
@@ -111,6 +113,7 @@ function ConteudoPonto(props: PontoModuleProps) {
       <main className="md:ml-64 pb-20 md:pb-0">
         {pagina === "registro" && <PaginaRegistro accountId={props.accountId} userId={props.userId} />}
         {pagina === "espelho" && <PaginaEspelho accountId={props.accountId} userId={props.userId} />}
+        {pagina === "escalas" && <PaginaEscalas accountId={props.accountId} userId={props.userId} />}
         {pagina === "ajustes" && <PaginaAjustes accountId={props.accountId} userId={props.userId} />}
         {pagina === "relatorios" && <PaginaRelatorios accountId={props.accountId} />}
         {pagina === "configuracoes" && <PaginaConfiguracoes accountId={props.accountId} />}
