@@ -1,0 +1,1 @@
+export type PontoPage = "registro" | "espelho" | "ajustes" | "relatorios" | "configuracoes";
