@@ -1,0 +1,9 @@
+<svg width="512" height="512" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Ícone DNEX Gestão Contador</title>
+  <desc id="desc">Uma maleta profissional com gráfico de carteira, representando a operação contábil e a gestão de clientes.</desc>
+  <rect width="128" height="128" rx="28" fill="#1E1B4B"/>
+  <path d="M29 48C29 42.477 33.477 38 39 38H50V32C50 28.686 52.686 26 56 26H72C75.314 26 78 28.686 78 32V38H89C94.523 38 99 42.477 99 48V91C99 96.523 94.523 101 89 101H39C33.477 101 29 96.523 29 91V48Z" stroke="#C7CCFE" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M29 62H99M48 62V70H80V62" stroke="#818BF6" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M45 87L57 76L68 83L84 66" stroke="#4F46E5" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="86" cy="65" r="8" fill="#F59E0B"/>
+</svg>

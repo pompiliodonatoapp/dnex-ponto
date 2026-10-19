@@ -8,12 +8,16 @@
     "node": ">=22"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "prepare:ds": "node scripts/ds-snapshot.mjs verify && node scripts/workspace-shell-snapshot.mjs verify && pnpm --dir packages/dnex-design-system build:library && pnpm --dir packages/dnex-contracts build && pnpm --dir packages/dnex-workspace-shell build",
+    "dev": "pnpm prepare:ds && vite",
+    "build": "pnpm prepare:ds && tsc -b && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc -b --noEmit"
+    "typecheck": "pnpm prepare:ds && tsc -b --noEmit",
+    "build:module": "vite build --config vite.module.config.ts"
   },
   "dependencies": {
+    "@dnex/ds": "workspace:*",
+    "@dnex/workspace-shell": "workspace:*",
     "@supabase/supabase-js": "^2.47.0",
     "idb-keyval": "^6.3.0",
     "jspdf": "^4.2.1",

@@ -1,0 +1,9 @@
+<svg width="512" height="512" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Ícone DNEX Fiscal</title>
+  <desc id="desc">Um livro fiscal com linhas de apuração e ponto de conferência, representando precisão tributária.</desc>
+  <rect width="128" height="128" rx="28" fill="#1E1B4B"/>
+  <path d="M30 22H98V105L88 97L78 105L68 97L58 105L48 97L38 105L30 98V22Z" stroke="#C7CCFE" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M46 45H80M46 61H88M46 77H72" stroke="#818BF6" stroke-width="7" stroke-linecap="round"/>
+  <path d="M45 89H62" stroke="#4F46E5" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="91" cy="44" r="8" fill="#F59E0B"/>
+</svg>

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "repository": "https://github.com/pompiliodonatoapp/dnex-platform-kit",
+  "revision": "c419da46686489cbaeece89863629fd58b5b8505",
+  "packages": {
+    "packages/dnex-workspace-shell": {
+      "name": "@dnex/workspace-shell",
+      "version": "0.2.0-rc.0",
+      "sourceTree": "8498979ad263d40bf833c0c48f64a5094e9e1677",
+      "files": {
+        ".gitignore": "d11958f695674a97e7bf5645c13cba154d0631cd97931d98d4f232275b358b6f",
+        "README.md": "dad39d969e88a66319c9369a3dd0fc1c03304e62c5bf17695dce84f56c11f134",
+        "package.json": "f7f3f98715a1e086f8162693d45df7ce40017ec7282b860942df806bade261f0",
+        "scripts/copy-css.mjs": "e4653265a74994356ef96a0cb9a7ed8472247b947b0270a2e3c9cf98532d1e71",
+        "src/WorkspaceShell.tsx": "4d6d3926e3cdc5e041f0b095ef75b666897ce5ea939274e883eabd2840db8f07",
+        "src/from-manifest.ts": "856e4dca3482572e5500206a5e7f9c69f8a63130d878aef1a2e7b910c8c6303f",
+        "src/index.node.ts": "d18653b5adbfc337391ecdbed98a8752ee7815d8d17371c7177977c95bee4e73",
+        "src/index.ts": "f271a8919402cbc757dcf5eafcd70bc1960015e0a84a29146a79561790214a6b",
+        "src/manifest.ts": "e4d4072a21845874dfdd93e5f00520755e384fb0af7f6aece2cd09c388718f5b",
+        "src/navigation.ts": "20ffb4de48afeb1b2c93a1405dca2e4ea7597738f0ca50b6dcb469836e694c71",
+        "src/rail-scroll.ts": "6543ac1412a3343f6b0412b1d411ee0caaa1bb6d7e7105d321b1e407f91aba1b",
+        "src/workspace-shell.css": "c63bd266d66e5f1224620bc4c0cea86816dc2cc8a01da9862c3ea764d2713789",
+        "tests/api-contract.tsx": "fe63a32aef2b036c48b9d417f989b267ec14960ee63f7b3a2a8a425d0f9d6597",
+        "tests/browser.mjs": "494fee8dc9e9f833203cfde817d53db9096f89badc941b0016985b982e789e04",
+        "tests/browser/host.html": "7ee318962d524ca66129f5bd9ad1d8f4e03bc75823852c4e7663a47577d69a6e",
+        "tests/browser/host.tsx": "bae43012046bdc9333017ea85d253d746e41bc5caf7748b6a452c045b2239f4a",
+        "tests/browser/index.html": "7ee188f9e731295f017900ce881ca024ccbac6a1ed77bec85cc223e21f337053",
+        "tests/browser/main.tsx": "bb5cc838faceec3a4c67cecbdbf63f74417a6bc73d1206427aa30208788554d2",
+        "tests/browser/navigation-groups.html": "854cccd1cabefd260362b5b6aa6e081ddac2a2b7705420b6a13be55330edd601",
+        "tests/browser/navigation-groups.tsx": "d76f056be4d3c63b788bc88c14cff3270926e547b6ab41f2c5407d8ae9e0153f",
+        "tests/browser/rail.html": "3965d2c1035df6fae6c36839ba18a920e3a4e7d6a3e6a1fc29e41d96e53c6853",
+        "tests/browser/rail.tsx": "b92693d0f1419b2a641223311b218ff5094144612d70963bac9fc3f9284a46ba",
+        "tests/consumer-build.test.mjs": "fdb4a044577f7bb8a6451b6e83b946273818e72e5f4614ddc91da38b4609b5f6",
+        "tests/consumer-build/index.html": "5f75a0012776cce07713cc6f2dfa0f9854038f86df86c571b5591c59b1b25a9e",
+        "tests/consumer-build/main.js": "10771ed7319ea729f635a1bd69a971377064f4ef57b405f780eacd155f95cde0",
+        "tests/distribution.test.ts": "677264aefa885fec8523478f35b343c360ee6b487d8ad09a25af5614951a5162",
+        "tests/focus-contrast.test.ts": "005351589b08388e1ad6b769b9cd30c4520ed586037f9dd13b1b05d270165392",
+        "tests/from-manifest.test.ts": "37ab56fef0a2fa4e0fe8a52ab0c28dc8d737f86bb94d966e9eb59cc646fa2d3f",
+        "tests/host-navigation.browser.mjs": "7899a34bd8e8c64d039a2e7399bb0c6b4723b15715694e3fa753220de7edfddd",
+        "tests/manifest.test.ts": "b87e55f1ddc8506322f2e1dfe5ece71d4206921ee4fc071ab531fd87702835ea",
+        "tests/navigation-groups.test.ts": "09583113ef7ea709b69820ebb67e71759817101b6c6d557ab3d5ca04bbb7e88f",
+        "tests/navigation.test.ts": "16a70f9ae6cfcd612dc4e2a280aeed1c061174748cde288bb9c7e70b460d0370",
+        "tests/rail-overflow.browser.mjs": "9dcaa616daa18142a952f26a28ad64b099b75e02c9d5067cbc93386686dab139",
+        "tests/rail-scroll.test.ts": "a68d254a2790b12d190b01701f9003a6b13b061845abaec593d3694d422a74ed",
+        "tests/slots-do-shell.test.ts": "b6138abf0e131c614f63210e27a68bcf71c219cb8e5ef6ce0047d565b4b60ff2",
+        "tsconfig.build.json": "7445faacc9dd98d7c1e05a8f3af88cd7a0dfcab2e4aa8db1350eb7885c709c7a",
+        "tsconfig.json": "d471a32ec55d519dbe9524dfcb7bd6005e656ebc2cca696ada94dbc9a8a5606c",
+        "tsconfig.tests.json": "ac6b78c96811b2b3cad687e3ef135b1aa40eb00044439395a854444cb2d01903"
+      }
+    },
+    "packages/dnex-contracts": {
+      "name": "@dnex/contracts",
+      "version": "0.2.0-rc.0",
+      "sourceTree": "b7b31030630c206186e106f22bc8d4613d74d016",
+      "files": {
+        "README.md": "411796da3a4add1235e9763c223c94b512a2737034087d13ff7bab2cfa4ed324",
+        "package.json": "8b4b9625f57b84daf526de5b862884b20ed3c77dbf669e7169aca70e6557c972",
+        "src/index.ts": "ec1a998f2fdeef46fea19307b58c2f99ba1b9b9bbca348e108dc15a0347a17a2",
+        "src/solution-manifest.ts": "37d8210a07417fa3cb3c14a59b51accedc7a0661cf07e1ec8d6777c4695e19ff",
+        "tests/solution-manifest.test.ts": "5c6af699aa9af68056ff29a7bc5c1fa95d29ebba97996095bcca6d2226b79001",
+        "tsconfig.build.json": "7445faacc9dd98d7c1e05a8f3af88cd7a0dfcab2e4aa8db1350eb7885c709c7a",
+        "tsconfig.json": "eda1882272135933cfed5ef978207545e1b52942db424610ce8c8f7336d13a70"
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$description": "Seletores planos: dimens\u00f5es do In\u00edcio DNEX Normas. Tabs e SegmentedControl compartilham este contrato; foco de teclado \u00e9 independente de sele\u00e7\u00e3o.",
+  "selection": {
+    "height": {
+      "$type": "dimension",
+      "$value": {
+        "value": 36,
+        "unit": "px"
+      }
+    },
+    "height-sm": {
+      "$type": "dimension",
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      }
+    },
+    "inset": {
+      "$type": "dimension",
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      }
+    },
+    "gap": {
+      "$type": "dimension",
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      }
+    },
+    "item-radius": {
+      "$type": "dimension",
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      }
+    },
+    "padding-inline": {
+      "$type": "dimension",
+      "$value": {
+        "value": 14,
+        "unit": "px"
+      }
+    },
+    "font-size": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0.88,
+        "unit": "rem"
+      }
+    },
+    "active-background": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.30980392156862746,
+          0.27450980392156865,
+          0.8980392156862745
+        ],
+        "alpha": 0.16
+      }
+    }
+  }
+}

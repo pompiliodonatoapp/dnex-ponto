@@ -1,0 +1,8 @@
+# Contraste do foreground de ação
+
+Execução: `pnpm --filter @dnex/ds test:action-link:browser`.
+Para o gate local com fontes oficiais cacheadas, definir `DNEX_FONT_MANIFEST` para o manifesto URL exata/file/SHA-256 e `DNEX_ACTION_FINAL=1`. O gate exige os dez pesos decodificados. `DNEX_ACTION_ARTIFACTS` escolhe o destino de relatório, bundle sintético e capturas; o CI usa seu diretório temporário. Sem manifesto, o CI valida os mesmos componentes e comportamentos com os fallbacks da família oficial. Nenhuma requisição externa não declarada é aceita.
+
+A fixture importa AuthLink, Button, PageHeader, SectionPanel, NotificationCenter e StatusPipeline reais. São seis combinações (320/390/1440, claro/escuro), 132 medições de texto/ícone com composição alfa dos fundos ancestrais e limiares de 4,5:1/3:1. Normal, hover e foco são exercitados; o sublinhado selecionado pintado e o outline de teclado do StatusPipeline também precisam de 3:1. o Popover deve restaurar foco, Enter mantém callbacks únicos, disabled/loading continuam desabilitados, asChild preserva âncoras e o fundo primary continua `--action`.
+
+O modo `DNEX_ACTION_BASELINE=1` registra os mesmos valores antes da correção sem exigir o limiar; não é usado no CI nem no gate final. Relatórios de falha ficam preservados. A revisão de outros consumidores no Kit é estática, com foregrounds equivalentes sobre superfícies/tonalidades; este focal não certifica todas as telas, contraste universal, API real, shell Hub ou DNEX Normas.

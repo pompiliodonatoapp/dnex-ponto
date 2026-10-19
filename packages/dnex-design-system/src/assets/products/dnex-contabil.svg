@@ -1,0 +1,9 @@
+<svg width="512" height="512" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Ícone DNEX Contábil</title>
+  <desc id="desc">Um razão contábil equilibrado em duas colunas com ponto de fechamento, representando patrimônio, lançamentos e conciliação.</desc>
+  <rect width="128" height="128" rx="28" fill="#1E1B4B"/>
+  <rect x="25" y="21" width="78" height="86" rx="14" stroke="#C7CCFE" stroke-width="8"/>
+  <path d="M64 25V94M39 43H53M39 59H53M39 75H53M75 43H89M75 59H89M75 75H89" stroke="#818BF6" stroke-width="7" stroke-linecap="round"/>
+  <path d="M42 94H86" stroke="#4F46E5" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="64" cy="94" r="9" fill="#F59E0B"/>
+</svg>

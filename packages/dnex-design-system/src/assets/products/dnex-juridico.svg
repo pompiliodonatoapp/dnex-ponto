@@ -1,0 +1,10 @@
+<svg width="512" height="512" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Ícone DNEX Jurídico</title>
+  <desc id="desc">Uma balança equilibrada, representando o acompanhamento e a organização jurídica.</desc>
+  <rect width="128" height="128" rx="28" fill="#1E1B4B"/>
+  <path d="M64 29V103M44 103H84" stroke="#C7CCFE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M28 45H100" stroke="#818BF6" stroke-width="8" stroke-linecap="round"/>
+  <path d="M33 47L19 76H47L33 47ZM95 47L81 76H109L95 47Z" stroke="#C7CCFE" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M21 81C27 89 39 89 45 81M83 81C89 89 101 89 107 81" stroke="#4F46E5" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="64" cy="27" r="8" fill="#F59E0B"/>
+</svg>

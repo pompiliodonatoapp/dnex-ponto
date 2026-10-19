@@ -1,0 +1,9 @@
+<svg width="512" height="512" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Ícone DNEX Aurora</title>
+  <desc id="desc">Um nascer do sol sobre o horizonte, representando acolhimento, clima e um novo começo.</desc>
+  <rect width="128" height="128" rx="28" fill="#1E1B4B"/>
+  <path d="M23 87H105" stroke="#818BF6" stroke-width="9" stroke-linecap="round"/>
+  <path d="M35 85C37.5 68.5 49.5 57 64 57C78.5 57 90.5 68.5 93 85" stroke="#C7CCFE" stroke-width="9" stroke-linecap="round"/>
+  <path d="M43 101H85" stroke="#4F46E5" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="64" cy="57" r="8" fill="#F59E0B"/>
+</svg>

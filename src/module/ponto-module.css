@@ -1,0 +1,3 @@
+.ponto-foundation { --bg-subtle: var(--surface-2); --border: var(--line); min-width: 0; }
+.ponto-foundation input, .ponto-foundation select, .ponto-foundation textarea { min-width: 0; max-width: 100%; }
+.ponto-foundation :focus-visible { outline: 2px solid var(--tone-action-fg); outline-offset: 3px; }

@@ -1,0 +1,40 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+const source = (path: string) => readFileSync(new URL(`../src/${path}`, import.meta.url), "utf8");
+test("StatusPipeline integra a API pública e a vitrine do DS", () => {
+  assert.match(source("index.ts"), /export \{ StatusPipeline \}/);
+  assert.match(source("components/charts/index.ts"), /export \{ StatusPipeline \}/);
+  assert.match(source("showcase/DataViz.tsx"), /<StatusPipelineDemo/);
+  assert.match(source("showcase/StatusPipelineDemo.tsx"), /<StatusPipeline stages=/);
+});
+test("filtros e métrica compartilham uma única barra responsiva", () => {
+  const code = source("components/charts/StatusPipeline.tsx");
+  assert.match(source("index.ts"), /export \{ StatusPipelineFilters \}/);
+  assert.match(code, /function StatusPipelineFilters/);
+  assert.equal((code.match(/className="dnex-pipeline-toolbar"/g) ?? []).length, 1);
+  assert.ok(code.indexOf('className="dnex-pipeline-toolbar"') < code.indexOf('className="dnex-pipeline-layout"'));
+  assert.match(code, /disabled=\{loading \|\| !!error \|\| total === 0\}/);
+  const css = source("styles/status-pipeline.css");
+  assert.match(css, /dnex-pipeline-scope button\[aria-pressed=true\]::after/);
+  assert.match(css, /@container \(max-width: 760px\)/);
+  assert.match(source("showcase/StatusPipelineDemo.tsx"), /<StatusPipelineFilters/);
+});
+test("status usam mesma base, dados em texto, estados e ações nativas", () => {
+  const code = source("components/charts/StatusPipeline.tsx");
+  assert.match(code, /base = metric === "count" \? total : value/);
+  assert.match(code, /participação, não conversão/);
+  assert.match(code, /onStageSelect\(stage.id\)/);
+  assert.match(code, /role="status"/);
+  assert.match(code, /role="alert"/);
+  assert.match(code, /unpricedCount/);
+  assert.match(code, /aria-pressed/);
+  assert.match(code, /<ol className="dnex-pipeline-stages"/);
+  assert.match(source("showcase/StatusPipelineDemo.tsx"), /import "..\/styles\/status-pipeline.css"/);
+  const pkg = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
+  assert.equal(pkg.exports["./status-pipeline.css"], "./dist/status-pipeline.css");
+  const css = source("styles/status-pipeline.css");
+  assert.match(css, /@container \(max-width: 460px\)/);
+  assert.match(css, /min-height: 44px/);
+  assert.match(css, /prefers-reduced-motion/);
+});

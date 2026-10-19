@@ -1,0 +1,9 @@
+<svg width="512" height="512" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Ícone DNEX Normas</title>
+  <desc id="desc">Um livro aberto com ponto de aceite, representando normas, políticas e conhecimento comprovado.</desc>
+  <rect width="128" height="128" rx="28" fill="#1E1B4B"/>
+  <path d="M22 31C37 28 51 31 64 41V101C51 91 37 88 22 91V31Z" stroke="#818BF6" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M106 31C91 28 77 31 64 41V101C77 91 91 88 106 91V31Z" stroke="#C7CCFE" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M36 51H51M36 65H51M77 65H92M77 78H92" stroke="#4F46E5" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="91" cy="48" r="7" fill="#F59E0B"/>
+</svg>

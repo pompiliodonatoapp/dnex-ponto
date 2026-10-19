@@ -298,7 +298,7 @@ export function PaginaFechamento({ accountId, userId }: Props) {
             ) : employees.length === 0 ? (
               <Card>
                 <CardBody className="text-center py-8">
-                  <CheckCircle2 size={40} className="mx-auto mb-3 text-green-500 opacity-50" />
+                  <CheckCircle2 size={40} className="mx-auto mb-3 text-[var(--tone-success-fg)] opacity-50" />
                   <h3 className="font-semibold text-[var(--fg)]">Nenhum periodo aberto</h3>
                   <p className="text-sm text-[var(--fg-muted)]">Todos os periodos estao fechados ou nao ha dados recentes.</p>
                 </CardBody>
@@ -329,7 +329,7 @@ export function PaginaFechamento({ accountId, userId }: Props) {
                           <div className="mt-1 flex flex-wrap gap-4 text-xs text-[var(--fg-muted)]">
                             <span className="flex items-center gap-1"><CalendarCheck size={12} /> {formatDateBR(emp.period_start)} — {formatDateBR(emp.period_end)}</span>
                             <span className="flex items-center gap-1"><Clock size={12} /> Trabalhado: {formatMinutes(emp.total_worked_minutes)}</span>
-                            <span className={`flex items-center gap-1 ${balance >= 0 ? "text-green-600" : "text-orange-600"}`}>
+                            <span className={`flex items-center gap-1 ${balance >= 0 ? "text-[var(--tone-success-fg)]" : "text-[var(--tone-warning-fg)]"}`}>
                               Saldo: {balance >= 0 ? "+" : "-"}{formatMinutes(Math.abs(balance))}
                             </span>
                           </div>

@@ -1,0 +1,9 @@
+<svg width="512" height="512" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Ícone DNEX Notas Fiscais</title>
+  <desc id="desc">Um recibo com confirmação de emissão, representando notas fiscais eletrônicas.</desc>
+  <rect width="128" height="128" rx="28" fill="#1E1B4B"/>
+  <path d="M31 22H97V104L86 97L75 104L64 97L53 104L42 97L31 104V22Z" stroke="#C7CCFE" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M45 38H82M45 52H71" stroke="#818BF6" stroke-width="7" stroke-linecap="round"/>
+  <path d="M48 74L60 85L82 64" stroke="#4F46E5" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="84" cy="62" r="7" fill="#F59E0B"/>
+</svg>

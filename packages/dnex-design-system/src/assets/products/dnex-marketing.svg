@@ -1,0 +1,10 @@
+<svg width="512" height="512" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Ícone DNEX Marketing</title>
+  <desc id="desc">Um megafone com ondas de alcance, representando campanhas e comunicação de marketing.</desc>
+  <rect width="128" height="128" rx="28" fill="#1E1B4B"/>
+  <path d="M53 45L91 31V79L53 64Z" stroke="#C7CCFE" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M29 45H53V64H29C23.5 64 19 59.5 19 54.5C19 49 23.5 45 29 45Z" stroke="#818BF6" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M38 68L45 94H59L53 67" stroke="#4F46E5" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M101 39L108 32M101 69L108 76" stroke="#818BF6" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="107" cy="54" r="7" fill="#F59E0B"/>
+</svg>

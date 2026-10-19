@@ -1,0 +1,59 @@
+{
+  "name": "@dnex/workspace-shell",
+  "version": "0.2.0-rc.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "type": "module",
+  "description": "Shell V2 do DNEX: rail global, navegação contextual e drawer mobile; sem autorização ou dados de domínio.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": [
+    "./dist/index.js",
+    "**/*.css"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "node": "./dist/index.node.js",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json",
+    "./styles": "./dist/workspace-shell.css"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node scripts/copy-css.mjs",
+    "prepublishOnly": "node ../../scripts/block-publish.mjs",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.tests.json",
+    "test": "node --test --experimental-strip-types tests/*.test.ts",
+    "test:browser": "node tests/browser.mjs",
+    "test:rail-browser": "node tests/rail-overflow.browser.mjs",
+    "test:consumer-build": "node --test tests/consumer-build.test.mjs",
+    "test:host-browser": "node tests/host-navigation.browser.mjs"
+  },
+  "dependencies": {
+    "@dnex/ds": "workspace:1.2.0-rc.2",
+    "lucide-react": "^0.469.0",
+    "@dnex/contracts": "workspace:0.2.0-rc.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/node": "^22.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.7.0"
+  }
+}

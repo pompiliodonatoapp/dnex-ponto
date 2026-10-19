@@ -1,0 +1,9 @@
+<svg width="512" height="512" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Ícone DNEX CRM</title>
+  <desc id="desc">Duas conversas conectadas, representando relacionamento, comunicação e continuidade comercial.</desc>
+  <rect width="128" height="128" rx="28" fill="#1E1B4B"/>
+  <path d="M24 29H82C89.7 29 96 35.3 96 43V61C96 68.7 89.7 75 82 75H53L35 90V75H24C16.3 75 10 68.7 10 61V43C10 35.3 16.3 29 24 29Z" stroke="#818BF6" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M52 53H104C111.7 53 118 59.3 118 67V82C118 89.7 111.7 96 104 96H94V108L78 96H52C44.3 96 38 89.7 38 82V75" stroke="#C7CCFE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M31 51H50M59 51H74" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="98" cy="75" r="7" fill="#F59E0B"/>
+</svg>
