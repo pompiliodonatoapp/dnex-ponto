@@ -1,0 +1,5 @@
+<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DNEX">
+  <path d="M22 24 L46 48 L22 72" stroke="#818BF6" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M44 24 L68 48 L44 72" stroke="#4F46E5" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="68" cy="48" r="10" fill="#F59E0B"/>
+</svg>

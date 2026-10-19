@@ -1,0 +1,10 @@
+<svg width="512" height="512" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Ícone DNEX Gestão</title>
+  <desc id="desc">Um painel com quadrantes e gráfico ascendente, representando a gestão empresarial e financeira.</desc>
+  <rect width="128" height="128" rx="28" fill="#1E1B4B"/>
+  <rect x="24" y="26" width="80" height="76" rx="8" stroke="#C7CCFE" stroke-width="8"/>
+  <path d="M55 27V101M25 58H55" stroke="#818BF6" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M36 42H44M36 76H44M36 88H44" stroke="#C7CCFE" stroke-width="7" stroke-linecap="round"/>
+  <path d="M70 86V72M83 86V59M96 86V46" stroke="#4F46E5" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="96" cy="44" r="7" fill="#F59E0B"/>
+</svg>

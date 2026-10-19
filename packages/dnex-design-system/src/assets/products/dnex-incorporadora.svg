@@ -1,0 +1,9 @@
+<svg width="512" height="512" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Ícone DNEX Incorporadora</title>
+  <desc id="desc">Edifícios de alturas diferentes, representando empreendimentos e incorporação imobiliária.</desc>
+  <rect width="128" height="128" rx="28" fill="#1E1B4B"/>
+  <path d="M24 103V48H58V24H100V103M20 104H108M58 49V103" stroke="#C7CCFE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M35 64H46M35 80H46M72 42H86M72 59H86" stroke="#818BF6" stroke-width="7" stroke-linecap="round"/>
+  <path d="M72 77V103" stroke="#4F46E5" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="86" cy="84" r="7" fill="#F59E0B"/>
+</svg>

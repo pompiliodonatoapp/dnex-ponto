@@ -1,0 +1,10 @@
+<svg width="512" height="512" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Ícone DNEX PER/DCOMP</title>
+  <desc id="desc">Uma guia de crédito fiscal conectada a uma seta de compensação, representando pedidos, compensações e controle auditável.</desc>
+  <rect width="128" height="128" rx="28" fill="#1E1B4B"/>
+  <path d="M35 25H80L95 40V95C95 100.523 90.523 105 85 105H35C29.477 105 25 100.523 25 95V35C25 29.477 29.477 25 35 25Z" stroke="#C7CCFE" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M79 25V41H95" stroke="#818BF6" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M43 59H76M43 76H65" stroke="#818BF6" stroke-width="7" stroke-linecap="round"/>
+  <path d="M48 91H83L75 83M83 91L75 99" stroke="#4F46E5" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="94" cy="61" r="9" fill="#F59E0B"/>
+</svg>

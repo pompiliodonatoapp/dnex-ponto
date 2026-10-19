@@ -4,8 +4,8 @@
   "description": "Sistema de Ponto Eletrônico mobile-first, offline-first",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#2563EB",
+  "background_color": "#FBFBFE",
+  "theme_color": "#FBFBFE",
   "icons": [
     {
       "src": "/icon-192.png",

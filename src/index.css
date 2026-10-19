@@ -1,43 +1,10 @@
+@import "@dnex/ds/styles";
 @import "tailwindcss";
+@source "../packages/dnex-design-system/dist";
+@source "../packages/dnex-workspace-shell/dist";
 
-:root {
-  --bg: #ffffff;
-  --bg-subtle: #f8fafc;
-  --fg: #0f172a;
-  --fg-muted: #64748b;
-  --border: #e2e8f0;
-  --tone-action-bg: #dbeafe;
-  --tone-action-fg: #2563eb;
-  --tone-success-bg: #dcfce7;
-  --tone-success-fg: #16a34a;
-  --tone-warning-bg: #fef3c7;
-  --tone-warning-fg: #d97706;
-  --tone-danger-bg: #fee2e2;
-  --tone-danger-fg: #dc2626;
-  --font-display: system-ui, -apple-system, sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f172a;
-    --bg-subtle: #1e293b;
-    --fg: #f8fafc;
-    --fg-muted: #94a3b8;
-    --border: #334155;
-    --tone-action-bg: #1e3a8a;
-    --tone-action-fg: #60a5fa;
-    --tone-success-bg: #14532d;
-    --tone-success-fg: #4ade80;
-    --tone-warning-bg: #78350f;
-    --tone-warning-fg: #fbbf24;
-    --tone-danger-bg: #7f1d1d;
-    --tone-danger-fg: #f87171;
-  }
-}
-
-body {
-  margin: 0;
-  font-family: var(--font-display);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Nomes legados do Ponto apontam para as superfícies do tema canônico. */
+.ponto-foundation {
+  --bg-subtle: var(--surface-2);
+  --border: var(--line);
 }

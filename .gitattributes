@@ -1,0 +1,7 @@
+packages/dnex-design-system/** text eol=lf
+packages/dnex-contracts/** text eol=lf
+packages/dnex-workspace-shell/** text eol=lf
+scripts/ds-snapshot.mjs text eol=lf
+scripts/workspace-shell-snapshot.mjs text eol=lf
+provenance/dnex-ds.json text eol=lf
+provenance/workspace-shell.json text eol=lf

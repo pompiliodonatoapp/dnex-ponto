@@ -1,0 +1,93 @@
+{
+  "name": "@dnex/ds",
+  "private": true,
+  "license": "UNLICENSED",
+  "version": "1.2.0-rc.2",
+  "type": "module",
+  "description": "DNEX Design System v1 \u2014 biblioteca de UI do hub DNEX (Vite + React 19 + Tailwind v4 + Radix + motion).",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./styles": "./dist/styles.css",
+    "./status-pipeline.css": "./dist/status-pipeline.css",
+    "./theme.css": "./dist/styles.css",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "pnpm run build:library && pnpm run build:showcase",
+    "build:library": "pnpm tokens:check && vite build --config vite.library.config.ts && node scripts/copy-chart-style.mjs",
+    "build:showcase": "tsc -b && vite build",
+    "preview": "vite preview --outDir dist-showcase",
+    "typecheck": "tsc -b --noEmit",
+    "verify:package": "pnpm run typecheck && pnpm run build:library",
+    "prepack": "pnpm run build:library",
+    "prepublishOnly": "node ../../scripts/block-publish.mjs",
+    "test": "node --test --experimental-strip-types tests/*.test.ts",
+    "test:c6:browser": "node tests/c6-browser.mjs",
+    "test:bottom-nav:browser": "node tests/bottom-nav-browser.cjs",
+    "test:topbar-extras:browser": "node tests/topbar-extras-browser.mjs",
+    "test:integrations-mobile:browser": "node tests/integrations-mobile.browser.mjs",
+    "test:select-form:browser": "node tests/select-form.browser.mjs",
+    "test:action-link:browser": "node tests/action-link-contrast.browser.mjs",
+    "tokens:check": "node scripts/selection-tokens.mjs --check"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.10.0",
+    "@radix-ui/react-accordion": "^1.2.3",
+    "@radix-ui/react-avatar": "^1.1.2",
+    "@radix-ui/react-checkbox": "^1.1.4",
+    "@radix-ui/react-dialog": "^1.1.6",
+    "@radix-ui/react-dropdown-menu": "^2.1.6",
+    "@radix-ui/react-hover-card": "^1.1.6",
+    "@radix-ui/react-label": "^2.1.2",
+    "@radix-ui/react-popover": "^1.1.6",
+    "@radix-ui/react-progress": "^1.1.2",
+    "@radix-ui/react-radio-group": "^1.2.3",
+    "@radix-ui/react-select": "^2.1.6",
+    "@radix-ui/react-separator": "^1.1.2",
+    "@radix-ui/react-slider": "^1.2.3",
+    "@radix-ui/react-slot": "^1.1.2",
+    "@radix-ui/react-switch": "^1.1.3",
+    "@radix-ui/react-tabs": "^1.1.3",
+    "@radix-ui/react-toggle-group": "^1.1.2",
+    "@radix-ui/react-tooltip": "^1.1.8",
+    "@tanstack/react-table": "^8.21.2",
+    "clsx": "^2.1.1",
+    "cmdk": "^1.0.4",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.469.0",
+    "motion": "^11.18.2",
+    "react-day-picker": "^9.11.0",
+    "react-hook-form": "^7.54.0",
+    "recharts": "^2.15.0",
+    "tailwind-merge": "^2.6.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.6",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.6",
+    "typescript": "~5.7.3",
+    "vite": "^6.4.3",
+    "vite-plugin-dts": "^4.5.4"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

@@ -1,0 +1,163 @@
+/* Geometry belongs to the shell; palette and spacing are inherited from @dnex/ds/styles. */
+.dnex-shell-root, .dnex-shell-chromeless { color: var(--fg); background: var(--bg); }
+.dnex-shell-root { height: 100dvh; overflow: hidden; }
+.dnex-shell-chromeless { min-height: 100dvh; }
+.dnex-shell-frame { display: flex; height: 100%; min-height: 0; align-items: stretch; }
+.dnex-shell-root *, .dnex-shell-mobile-drawer * { box-sizing: border-box; }
+.dnex-shell-skip-link { position: absolute; top: 8px; left: 8px; z-index: var(--z-tooltip); transform: translateY(-200%); padding: 8px 12px; border-radius: var(--radius-control); color: var(--fg-on-action); background: var(--action); }
+.dnex-shell-skip-link:focus { transform: none; }
+.dnex-shell-root a:focus-visible, .dnex-shell-root button:focus-visible,
+.dnex-shell-mobile-drawer a:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+/* O trilho de produtos é índigo-950 nos dois temas: o anel precisa ser claro (índigo-200 = 10,3:1; --focus-ring dá 2,5:1 no claro). */
+.dnex-shell-product-rail a:focus-visible, .dnex-shell-product-rail button:focus-visible { outline-color: var(--color-indigo-200); }
+
+.dnex-shell-product-rail { display: flex; width: 72px; height: 100%; flex: 0 0 72px; flex-direction: column; align-items: center; gap: 8px; overflow: hidden; padding: 12px 6px max(12px, env(safe-area-inset-bottom)); color: var(--fg-on-action); background: var(--color-indigo-950); }
+.dnex-shell-rail-brand { display: grid; width: 44px; height: 44px; flex: 0 0 auto; place-items: center; }
+.dnex-shell-product-list { display: grid; width: 100%; min-height: 0; flex: 1 1 auto; align-content: start; gap: 5px; overflow-y: auto; overscroll-behavior: contain; }
+.dnex-shell-product-link { position: relative; display: flex; min-height: 58px; min-width: 0; width: 100%; flex: 0 0 auto; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border-radius: var(--radius-control); color: inherit; text-decoration: none; transition: background-color var(--duration-fast) var(--ease-out-soft); }
+.dnex-shell-product-icon { display: grid; width: 28px; height: 28px; place-items: center; }
+.dnex-shell-product-icon > svg, .dnex-shell-product-icon > img { max-width: 28px; max-height: 28px; }
+.dnex-shell-product-label { max-width: 100%; overflow: hidden; font-size: 9px; line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
+.dnex-shell-product-rail .dnex-shell-product-link:hover,
+.dnex-shell-product-rail .dnex-shell-product-link:focus-visible,
+.dnex-shell-product-rail .dnex-shell-product-link[aria-current="page"] { background: color-mix(in srgb, var(--fg-on-action) 14%, transparent); }
+.dnex-shell-badge { position: absolute; top: 1px; right: 1px; min-width: 15px; border-radius: var(--radius-pill); padding-inline: 3px; color: var(--color-indigo-950); background: var(--accent); font-size: 10px; line-height: 15px; text-align: center; }
+.dnex-shell-product-dot { position: absolute; right: 5px; bottom: 5px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+.dnex-shell-products-notice { flex: 0 0 auto; max-width: 100%; padding: 4px 0; text-align: center; font-size: 10px; overflow-wrap: anywhere; }
+.dnex-shell-product-catalog { display: flex; min-height: 48px; width: 100%; flex: 0 0 auto; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border-radius: var(--radius-control); color: inherit; font-size: 9px; text-decoration: none; }
+.dnex-shell-product-catalog:hover { background: color-mix(in srgb, var(--fg-on-action) 10%, transparent); }
+.dnex-shell-rail-scroll { display: grid; width: 44px; height: 28px; flex: 0 0 auto; place-items: center; border-radius: var(--radius-control); color: inherit; cursor: pointer; }
+.dnex-shell-rail-scroll:disabled { visibility: hidden; pointer-events: none; }
+.dnex-shell-rail-scroll:hover { background: color-mix(in srgb, var(--fg-on-action) 10%, transparent); }
+
+.dnex-shell-context-sidebar { display: flex; width: var(--shell-sidebar-width); height: 100%; flex: 0 0 var(--shell-sidebar-width); min-height: 0; flex-direction: column; overflow: hidden; border-right: 1px solid var(--line); background: var(--surface-2); transition: width var(--shell-sidebar-transition), flex-basis var(--shell-sidebar-transition); }
+.dnex-shell-context-sidebar[data-collapsed="true"] { width: var(--shell-sidebar-collapsed-width); flex-basis: var(--shell-sidebar-collapsed-width); }
+.dnex-shell-context-heading { display: flex; min-height: var(--shell-topbar-height); flex: 0 0 auto; align-items: center; justify-content: space-between; gap: 6px; padding-inline: 12px; }
+.dnex-shell-context-brand { min-width: 0; overflow: hidden; }
+.dnex-shell-context-toggle { display: grid; width: 36px; height: 36px; flex: 0 0 auto; place-items: center; border-radius: var(--radius-control); color: var(--fg-muted); cursor: pointer; }
+.dnex-shell-context-toggle:hover { color: var(--fg); background: var(--surface-hover); }
+.dnex-shell-workspace { display: flex; min-height: 64px; min-width: 0; flex: 0 0 auto; align-items: center; gap: 10px; margin: 0 12px 12px; padding: 6px 8px; color: var(--fg-muted); border-radius: var(--radius-control); text-decoration: none; }
+a.dnex-shell-workspace:hover { background: var(--surface-hover); }
+.dnex-shell-workspace > svg { flex: 0 0 auto; color: var(--action); }
+.dnex-shell-workspace > span { display: grid; min-width: 0; gap: 3px; }
+.dnex-shell-workspace strong { overflow: hidden; color: var(--fg); font-size: 12px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+.dnex-shell-workspace small { font-size: 10px; }
+.dnex-shell-sidebar-header { flex: 0 0 auto; min-width: 0; padding: 0 12px 12px; }
+.dnex-shell-context-scroll { min-height: 0; flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain; padding: 0 9px 16px; }
+/* Keep wheel, touch and keyboard scrolling without a native gutter in either menu. */
+.dnex-shell-product-list, .dnex-shell-context-scroll { scrollbar-width: none; }
+.dnex-shell-product-list::-webkit-scrollbar, .dnex-shell-context-scroll::-webkit-scrollbar { display: none; }
+@media (forced-colors: active) {
+  .dnex-shell-product-list, .dnex-shell-context-scroll { scrollbar-width: auto; }
+  .dnex-shell-product-list::-webkit-scrollbar, .dnex-shell-context-scroll::-webkit-scrollbar { display: block; }
+}
+.dnex-shell-context-navigation { display: grid; align-content: start; gap: 18px; }
+.dnex-shell-context-section { min-width: 0; }
+.dnex-shell-context-section > h2 { overflow: hidden; margin: 0 10px 7px; color: var(--fg-muted); font-size: 10px; font-weight: 600; letter-spacing: .09em; line-height: 1.5; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap; }
+.dnex-shell-context-links { display: grid; gap: 3px; }
+.dnex-shell-context-link { text-align: left; cursor: pointer; display: flex; min-height: 44px; min-width: 0; align-items: center; gap: 10px; border-radius: var(--radius-control); padding: 0 11px; color: var(--fg-muted); font-size: 13px; text-decoration: none; }
+.dnex-shell-context-link:hover, .dnex-shell-context-link:focus-visible { color: var(--fg); background: var(--surface-hover); }
+.dnex-shell-context-link[aria-current="page"] { color: var(--action); background: var(--action-tint); font-weight: 600; }
+.dnex-shell-context-icon { display: grid; width: 18px; height: 20px; flex: 0 0 18px; place-items: center; font-size: 10px; font-weight: 600; }
+.dnex-shell-context-icon svg { width: 18px; height: 18px; }
+.dnex-shell-context-label { min-width: 0; flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dnex-shell-context-badge { flex: 0 0 auto; border-radius: var(--radius-pill); padding: 1px 6px; background: var(--surface); font-size: 10px; }
+.dnex-shell-active-dot { width: 6px; height: 6px; flex: 0 0 6px; border-radius: 50%; background: currentColor; }
+
+/* Navigation groups */
+.dnex-shell-context-group-toggle { text-align: left; cursor: pointer; display: flex; min-height: 44px; min-width: 0; align-items: center; gap: 10px; border-radius: var(--radius-control); padding: 0 11px; color: var(--fg-muted); font-size: 13px; font-family: inherit; appearance: none; border: 0; background: transparent; width: 100%; }
+.dnex-shell-context-group-toggle:hover, .dnex-shell-context-group-toggle:focus-visible { color: var(--fg); background: var(--surface-hover); }
+.dnex-shell-context-group-active-ancestor { color: var(--fg); font-weight: 500; }
+.dnex-shell-context-group-toggle .dnex-shell-context-label { overflow: visible; white-space: normal; overflow-wrap: anywhere; padding-block: 10px; }
+.dnex-shell-group-chevron { display: grid; width: 14px; height: 14px; flex: 0 0 auto; place-items: center; transition: transform var(--duration-fast) var(--ease-out-soft); margin-inline-start: auto; }
+.dnex-shell-group-chevron-open { transform: rotate(180deg); }
+.dnex-shell-group-children { display: grid; gap: 3px; padding-inline-start: 20px; margin: 0; padding-block-start: 4px; list-style: none; }
+.dnex-shell-group-children[hidden] { display: none; }
+.dnex-shell-context-links:has(.dnex-shell-group-children:not([hidden])) { gap: 6px; }
+
+/* Navigation search */
+.dnex-shell-nav-search { display: flex; align-items: center; gap: 8px; min-width: 0; min-height: 44px; margin-block-end: 12px; padding-inline: 11px; border: 1px solid var(--line); border-radius: var(--radius-control); background: var(--surface); }
+.dnex-shell-nav-search:focus-within { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.dnex-shell-nav-search-label { display: flex; flex: 0 0 auto; align-items: center; color: var(--fg-muted); cursor: text; }
+.dnex-shell-nav-search-label svg { flex: 0 0 auto; }
+.dnex-shell-nav-search-label-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.dnex-shell-nav-search-input { flex: 1 1 auto; width: 100%; min-width: 0; min-height: 40px; border: 0; background: transparent; color: var(--fg); font-size: 13px; font-family: inherit; outline: none; }
+.dnex-shell-nav-search-input::placeholder { color: var(--fg-muted); }
+.dnex-shell-nav-search-clear { display: grid; width: 44px; height: 44px; flex: 0 0 auto; place-items: center; border-radius: var(--radius-control); color: var(--fg-muted); cursor: pointer; appearance: none; border: 0; background: transparent; }
+.dnex-shell-nav-search-clear:hover { color: var(--fg); background: var(--surface-hover); }
+.dnex-shell-nav-search-empty { margin: 0; padding: 12px 11px; color: var(--fg-muted); font-size: 13px; }
+.dnex-shell-nav-search-group-header { display: flex; min-height: 44px; width: 100%; align-items: center; justify-content: space-between; padding: 0 11px; color: var(--fg-muted); font-size: 10px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; cursor: pointer; appearance: none; border: 0; background: transparent; font-family: inherit; }
+.dnex-shell-nav-search-group-header:hover { color: var(--fg); background: var(--surface-hover); }
+.dnex-shell-nav-search-group-toggle { display: grid; width: 14px; height: 14px; place-items: center; }
+.dnex-shell-nav-search-group-items { display: grid; gap: 3px; padding: 0; margin: 0; list-style: none; }
+.dnex-shell-context-sidebar[data-collapsed="true"] .dnex-shell-context-heading { justify-content: center; padding-inline: 0; }
+.dnex-shell-context-sidebar[data-collapsed="true"] .dnex-shell-nav-search,
+.dnex-shell-context-sidebar[data-collapsed="true"] .dnex-shell-group-children,
+.dnex-shell-context-sidebar[data-collapsed="true"] .dnex-shell-group-chevron { display: none; }
+.dnex-shell-context-sidebar[data-collapsed="true"] .dnex-shell-context-brand,
+.dnex-shell-context-sidebar[data-collapsed="true"] .dnex-shell-workspace > span,
+.dnex-shell-context-sidebar[data-collapsed="true"] .dnex-shell-context-section > h2,
+.dnex-shell-context-sidebar[data-collapsed="true"] .dnex-shell-context-label,
+.dnex-shell-context-sidebar[data-collapsed="true"] .dnex-shell-context-badge,
+.dnex-shell-context-sidebar[data-collapsed="true"] .dnex-shell-active-dot,
+.dnex-shell-context-sidebar[data-collapsed="true"] .dnex-shell-group-chevron,
+.dnex-shell-context-sidebar[data-collapsed="true"] .dnex-shell-group-children,
+.dnex-shell-context-sidebar[data-collapsed="true"] .dnex-shell-nav-search { display: none; }
+.dnex-shell-context-sidebar[data-collapsed="true"] .dnex-shell-workspace { justify-content: center; margin-inline: 0; padding-inline: 0; }
+.dnex-shell-context-sidebar[data-collapsed="true"] .dnex-shell-context-link,
+.dnex-shell-context-sidebar[data-collapsed="true"] .dnex-shell-context-group-toggle { justify-content: center; padding-inline: 0; }
+
+.dnex-shell-main-column { display: flex; min-width: 0; min-height: 0; flex: 1 1 auto; flex-direction: column; }
+.dnex-shell-topbar { grid-template-columns: minmax(0, 1fr) minmax(0, 320px) auto; }
+.dnex-shell-topbar > div:nth-child(2) { min-width: 0; }
+.dnex-shell-topbar > div:nth-child(2) > * { max-width: 100%; }
+.dnex-shell-page-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; font-weight: 600; }
+.dnex-shell-page-label > span { color: var(--fg-muted); font-weight: 400; }
+.dnex-shell-content { min-width: 0; min-height: 0; flex: 1 1 auto; overflow-y: auto; outline: none; padding-block: var(--shell-content-padding-top) max(var(--shell-content-padding-bottom), env(safe-area-inset-bottom)); padding-inline: max(var(--shell-content-padding-inline), env(safe-area-inset-left)) max(var(--shell-content-padding-inline), env(safe-area-inset-right)); }
+.dnex-shell-page { width: 100%; min-width: 0; max-width: var(--shell-content-max-width); margin-inline: auto; }
+.dnex-shell-global-topbar { display: flex; flex: 0 0 auto; align-items: center; gap: 6px; }
+.dnex-shell-global-link { position: relative; display: flex; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--line); border-radius: var(--radius-control); color: var(--fg-muted); text-decoration: none; }
+.dnex-shell-global-link:hover { color: var(--fg); background: var(--surface-hover); }
+.dnex-shell-global-link svg { width: 20px; height: 20px; }
+.dnex-shell-global-mobile { display: grid; gap: 8px; margin-top: 24px; }
+.dnex-shell-global-mobile .dnex-shell-global-link { justify-content: flex-start; padding: 8px 12px; }
+.dnex-shell-mobile-menu-trigger, .dnex-shell-mobile-bottom-nav, .dnex-shell-center-compact { display: none; }
+.dnex-shell-mobile-drawer { height: 100dvh; color: var(--fg); }
+.dnex-shell-mobile-drawer > button { width: 44px; height: 44px; }
+.dnex-shell-mobile-drawer .dnex-shell-sidebar-header { padding-inline: 0; }
+.dnex-shell-mobile-products { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-block: 12px 20px; }
+.dnex-shell-mobile-products .dnex-shell-product-link:hover,
+.dnex-shell-mobile-products .dnex-shell-product-link[aria-current="page"] { background: var(--action-tint); color: var(--action); }
+.dnex-shell-drawer-hub { display: inline-flex; min-height: 44px; align-items: center; color: var(--action); }
+.dnex-shell-drawer-notice { margin-block: 12px; font-size: 13px; }
+
+@media (max-width: 1100px) {
+  .dnex-shell-product-rail, .dnex-shell-context-sidebar, .dnex-shell-global-topbar { display: none; }
+  .dnex-shell-topbar { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; gap: 8px; }
+  .dnex-shell-mobile-menu-trigger { display: grid; width: 44px; height: 44px; flex: 0 0 auto; place-items: center; border-radius: var(--radius-control); color: var(--fg-muted); cursor: pointer; }
+  .dnex-shell-mobile-menu-trigger:hover { background: var(--surface-hover); }
+  .dnex-shell-mobile-bottom-nav { position: fixed; z-index: var(--z-sticky); right: 0; bottom: 0; left: 0; display: flex; min-height: calc(58px + env(safe-area-inset-bottom)); align-items: stretch; gap: 3px; border-top: 1px solid var(--line); padding: 4px 8px max(4px, env(safe-area-inset-bottom)); background: var(--surface); }
+  .dnex-shell-mobile-bottom-link { display: flex; min-width: 0; min-height: 44px; flex: 1 1 0; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border-radius: var(--radius-control); color: var(--fg-muted); font-size: 10px; text-decoration: none; cursor: pointer; }
+  .dnex-shell-mobile-bottom-link > span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .dnex-shell-mobile-bottom-link[aria-current="page"] { color: var(--action); background: var(--action-tint); }
+  .dnex-shell-mobile-bottom-link svg { width: 20px; height: 20px; }
+  .dnex-shell-root[data-mobile-navigation="true"] .dnex-shell-content { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
+}
+@media (max-width: 700px) {
+  .dnex-shell-topbar { height: var(--shell-topbar-height-mobile); min-height: var(--shell-topbar-height-mobile); gap: 6px; padding-inline: 12px; }
+  .dnex-shell-topbar > div:first-child { gap: 6px; }
+  .dnex-shell-topbar > div:first-child > :not(.dnex-shell-mobile-menu-trigger) { min-width: 0; overflow: hidden; }
+  .dnex-shell-center-wide { display: none; }
+  .dnex-shell-center-compact { display: flex; justify-content: flex-end; }
+}
+@media (max-width: 639px) {
+  .dnex-shell-content { padding-inline: max(var(--shell-content-padding-inline-mobile), env(safe-area-inset-left)) max(var(--shell-content-padding-inline-mobile), env(safe-area-inset-right)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dnex-shell-root *, .dnex-shell-mobile-drawer * { scroll-behavior: auto; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+/* Local-view actions share the same surface as URL links, independent of host button resets. */
+button.dnex-shell-context-link, button.dnex-shell-mobile-bottom-link { appearance: none; border: 0; font-family: inherit; background: transparent; }
+button.dnex-shell-context-link:hover, button.dnex-shell-context-link:focus-visible { background: var(--surface-hover); }
+button.dnex-shell-context-link[aria-current="page"], button.dnex-shell-mobile-bottom-link[aria-current="page"] { background: var(--action-tint); }

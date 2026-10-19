@@ -1,0 +1,11 @@
+<svg width="512" height="512" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Ícone DNEX Portal do Cliente</title>
+  <desc id="desc">Uma pessoa dentro de uma porta de acesso com fechadura, representando o portal seguro do cliente.</desc>
+  <rect width="128" height="128" rx="28" fill="#1E1B4B"/>
+  <path d="M27 102V38C27 31.4 32.4 26 39 26H89C95.6 26 101 31.4 101 38V102" stroke="#818BF6" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M42 102V43H86V102M22 102H106" stroke="#C7CCFE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="64" cy="61" r="8" stroke="#C7CCFE" stroke-width="7"/>
+  <path d="M50 85C52 77 57 73 64 73C71 73 76 77 78 85" stroke="#818BF6" stroke-width="7" stroke-linecap="round"/>
+  <path d="M91 77V72C91 69.2 92.8 67 95 67C97.2 67 99 69.2 99 72V77" stroke="#4F46E5" stroke-width="7" stroke-linecap="round"/>
+  <rect x="88" y="77" width="14" height="14" rx="4" fill="#F59E0B"/>
+</svg>

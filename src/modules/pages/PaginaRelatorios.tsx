@@ -405,25 +405,25 @@ export function PaginaRelatorios({ accountId }: Props) {
         <div className="grid gap-4 md:grid-cols-4">
           <Card>
             <CardBody className="text-center">
-              <div className="text-2xl font-bold text-[var(--tone-action-fg)]">{uniqueEmployees}</div>
+              <div className="font-mono text-[length:var(--text-kpi)] font-semibold text-[var(--tone-action-fg)]">{uniqueEmployees}</div>
               <div className="text-sm text-[var(--fg-muted)]">Colaboradores</div>
             </CardBody>
           </Card>
           <Card>
             <CardBody className="text-center">
-              <div className="text-2xl font-bold text-[var(--tone-action-fg)]">{formatMinutes(totalWorked)}</div>
+              <div className="font-mono text-[length:var(--text-kpi)] font-semibold text-[var(--tone-action-fg)]">{formatMinutes(totalWorked)}</div>
               <div className="text-sm text-[var(--fg-muted)]">Total Trabalhado</div>
             </CardBody>
           </Card>
           <Card>
             <CardBody className="text-center">
-              <div className="text-2xl font-bold text-[var(--tone-action-fg)]">{formatMinutes(totalOT)}</div>
+              <div className="font-mono text-[length:var(--text-kpi)] font-semibold text-[var(--tone-action-fg)]">{formatMinutes(totalOT)}</div>
               <div className="text-sm text-[var(--fg-muted)]">Horas Extras</div>
             </CardBody>
           </Card>
           <Card>
             <CardBody className="text-center">
-              <div className={`text-2xl font-bold ${totalWorked >= totalScheduled ? "text-green-600" : "text-orange-600"}`}>
+              <div className={`font-mono text-[length:var(--text-kpi)] font-semibold ${totalWorked >= totalScheduled ? "text-[var(--tone-success-fg)]" : "text-[var(--tone-warning-fg)]"}`}>
                 {totalWorked - totalScheduled >= 0 ? "+" : "-"}{formatMinutes(Math.abs(totalWorked - totalScheduled))}
               </div>
               <div className="text-sm text-[var(--fg-muted)]">Saldo Geral</div>
@@ -447,7 +447,7 @@ export function PaginaRelatorios({ accountId }: Props) {
           </Card>
           <Card>
             <CardBody className="flex flex-col items-center gap-3 text-center">
-              <FileSpreadsheet size={32} className="text-green-600" />
+              <FileSpreadsheet size={32} className="text-[var(--tone-success-fg)]" />
               <h4 className="font-semibold">Excel Completo</h4>
               <p className="text-xs text-[var(--fg-muted)]">Planilha com dados detalhados e resumo por colaborador</p>
               <Button size="sm" onClick={generateExcel} disabled={generating !== null || dailyBalances.length === 0}>
@@ -457,7 +457,7 @@ export function PaginaRelatorios({ accountId }: Props) {
           </Card>
           <Card>
             <CardBody className="flex flex-col items-center gap-3 text-center">
-              <Printer size={32} className="text-purple-600" />
+              <Printer size={32} className="text-[var(--tone-action-fg)]" />
               <h4 className="font-semibold">AFD Fiscal</h4>
               <p className="text-xs text-[var(--fg-muted)]">Arquivo fonte de dados conforme Portaria 671/2021 MTP</p>
               <Button size="sm" onClick={generateAFD} disabled={generating !== null || clockEntries.length === 0}>
@@ -467,7 +467,7 @@ export function PaginaRelatorios({ accountId }: Props) {
           </Card>
           <Card>
             <CardBody className="flex flex-col items-center gap-3 text-center">
-              <Calendar size={32} className="text-orange-600" />
+              <Calendar size={32} className="text-[var(--tone-warning-fg)]" />
               <h4 className="font-semibold">AEJ Jornada</h4>
               <p className="text-xs text-[var(--fg-muted)]">Espelho de jornada eletronico estruturado</p>
               <Button size="sm" onClick={generateAEJ} disabled={generating !== null || clockEntries.length === 0}>
@@ -510,7 +510,7 @@ export function PaginaRelatorios({ accountId }: Props) {
                         <td className="px-4 py-2 text-right font-mono">{formatMinutes(b.worked_minutes)}</td>
                         <td className="px-4 py-2 text-right font-mono">{formatMinutes(b.scheduled_minutes)}</td>
                         <td className="px-4 py-2 text-right font-mono">{formatMinutes(b.overtime_minutes)}</td>
-                        <td className={`px-4 py-2 text-right font-mono ${balance >= 0 ? "text-green-600" : "text-orange-600"}`}>
+                        <td className={`px-4 py-2 text-right font-mono ${balance >= 0 ? "text-[var(--tone-success-fg)]" : "text-[var(--tone-warning-fg)]"}`}>
                           {balance >= 0 ? "+" : "-"}{formatMinutes(Math.abs(balance))}
                         </td>
                       </tr>
