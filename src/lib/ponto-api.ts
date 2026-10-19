@@ -1,6 +1,6 @@
 export type ClockType = 'clock_in' | 'break_start' | 'break_end' | 'clock_out';
 export interface PontoContext { userId: string; accountId: string; employeeId: string; timeZone:string; permissions: string[]; serverTime: string }
-export interface ClockReceipt { clockId: string | null; origin?:'clock'|'adjustment'; idempotencyKey?: string; requestId?:string; timestampUtc: string; type: ClockType }
+export interface ClockReceipt { clockId: string | number | null; origin?:'clock'|'adjustment'; idempotencyKey?: string; requestId?:string; timestampUtc: string; type: ClockType }
 export interface Mirror { timeZone:string; clocks: ClockReceipt[]; effectiveClocks?: ClockReceipt[]; adjustments: Adjustment[] }
 export class PontoApiError extends Error {
   status: number; code: string;
